@@ -32,7 +32,10 @@
                                     <label class="form-label">Id:</label>
                                     <form:input type="text" class="form-control" path="id" />
                                 </div>
-                                <button class="btn btn-danger">Confirm</button>
+                                <td>
+                                    <button class="btn btn-danger">Confirm</button>
+                                    <a href="/admin/user" class="btn btn-success">Cancel</a>
+                                </td>
                             </form:form>
 
                         </div>
