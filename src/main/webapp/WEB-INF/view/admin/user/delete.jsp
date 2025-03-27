@@ -10,7 +10,7 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
                 <meta name="description" content="PhamTho - Dự án laptopshop" />
                 <meta name="author" content="PhamTho" />
-                <title>Create</title>
+                <title>Delete User</title>
                 <link href="/css/styles.css" rel="stylesheet" />
                 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
             </head>
@@ -30,34 +30,26 @@
                                 <div>
                                     <div class="mt-5">
                                         <div class="row">
-                                            <div class="col-md-6 col-12 mx-auto">
-                                                <h3>Creates User</h3>
+                                            <div class="col-12 mx-auto">
+                                                <div class="d-flex justify-content-between">
+                                                    <h3>Delete the user with id = ${id}</h3>
+                                                </div>
                                                 <hr />
-                                                <form:form method="post" action="/admin/user/create"
-                                                    modelAttribute="newUser">
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Email:</label>
-                                                        <form:input type="email" class="form-control" path="email" />
+                                                <div class="alert alert-danger">
+                                                    Are you sure to delete this user?
+                                                </div>
+                                                <form:form method="post" action="/admin/user/delete"
+                                                    modelAttribute="deleteUser">
+                                                    <div class="mb-3" style="display: none;">
+                                                        <label class="form-label">Id:</label>
+                                                        <form:input type="text" class="form-control" path="id" />
                                                     </div>
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Password:</label>
-                                                        <form:input type="password" class="form-control"
-                                                            path="password" />
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Phone number:</label>
-                                                        <form:input type="text" class="form-control" path="phone" />
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Full Name:</label>
-                                                        <form:input type="text" class="form-control" path="fullName" />
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Address:</label>
-                                                        <form:input type="text" class="form-control" path="address" />
-                                                    </div>
-                                                    <button type="submit" class="btn btn-primary">Create</button>
+                                                    <td>
+                                                        <button class="btn btn-danger">Confirm</button>
+                                                        <a href="/admin/user" class="btn btn-success">Cancel</a>
+                                                    </td>
                                                 </form:form>
+
                                             </div>
                                         </div>
                                     </div>

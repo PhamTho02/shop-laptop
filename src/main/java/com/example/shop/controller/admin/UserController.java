@@ -1,4 +1,4 @@
-package com.example.shop.controller;
+package com.example.shop.controller.admin;
 
 import java.util.List;
 
@@ -45,19 +45,19 @@ public class UserController {
     public String getUserPage(Model model) {
         List<User> users = userService.getAllUsers();
         model.addAttribute("users", users);
-        return "/admin/user/table-user";
+        return "/admin/user/show";
     }
 
     @RequestMapping("/admin/user/{id}")
     public String getUserDetailPage(Model model, @PathVariable long id) {
         model.addAttribute("user", userService.getUserById(id));
-        return "/admin/user/detail-user";
+        return "/admin/user/detail";
     }
 
     @RequestMapping("/admin/user/update/{id}")
     public String getUpdateUserPage(Model model, @PathVariable long id) {
         model.addAttribute("updateUser", userService.getUserById(id));
-        return "/admin/user/update-user";
+        return "/admin/user/update";
     }
 
     @PostMapping("/admin/user/update")
@@ -69,7 +69,7 @@ public class UserController {
     @GetMapping("/admin/user/delete/{id}")
     public String getDeleteUserPage(Model model, @PathVariable long id) {
         model.addAttribute("deleteUser", userService.getUserById(id));
-        return "admin/user/delete-user";
+        return "admin/user/delete";
     }
 
     @PostMapping("/admin/user/delete")
