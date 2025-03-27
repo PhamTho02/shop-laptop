@@ -12,6 +12,19 @@
                 <meta name="author" content="PhamTho" />
                 <title>Create</title>
                 <link href="/css/styles.css" rel="stylesheet" />
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+                <script>
+                    $(document).ready(() => {
+                        const avatarFile = $("#avatarFile");
+                        avatarFile.change(function (e) {
+                            const imgURL = URL.createObjectURL(e.target.files[0]);
+                            $("#avatarPreview").attr("src", imgURL);
+                            $("#avatarPreview").css({ "display": "block" });
+                        });
+                    });
+                </script>
+
                 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
             </head>
 
@@ -34,7 +47,7 @@
                                                 <h3>Creates User</h3>
                                                 <hr />
                                                 <form:form method="post" action="/admin/user/create"
-                                                    modelAttribute="newUser" class="row">
+                                                    modelAttribute="newUser" class="row" enctype="multipart/form-data">
                                                     <div class="mb-3 col-12 col-md-6">
                                                         <label class="form-label">Email:</label>
                                                         <form:input type="email" class="form-control" path="email" />
@@ -58,15 +71,15 @@
                                                     </div>
                                                     <div class="mb-3 col-12 col-md-6">
                                                         <label class="form-label">Role:</label>
-                                                        <select class="form-select">
-                                                            <option value="ADMIN">ADMIN</option>
-                                                            <option value="USER">USER</option>
-                                                        </select>
+                                                        <form:select class="form-select" path="role.name">
+                                                            <form:option value="ADMIN">ADMIN</form:option>
+                                                            <form:option value="USER">USER</form:option>
+                                                        </form:select>
                                                     </div>
                                                     <div class="mb-3 col-12 col-md-6">
                                                         <label for="avatarFile" class="form-label">Avatar:</label>
                                                         <input class="form-control" type="file" id="avatarFile"
-                                                            accept=".png, .jpg, .jpeg" />
+                                                            accept=".png, .jpg, .jpeg" name="nameAvatarFile" />
                                                     </div>
                                                     <div class="col-12 mb-3">
                                                         <img style="max-height: 250px; display: none;"
