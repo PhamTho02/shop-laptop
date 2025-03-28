@@ -2,6 +2,7 @@ package com.example.shop.controller.admin;
 
 import java.util.List;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,10 +23,13 @@ public class UserController {
 
     private final UserService userService;
     private final UploadService uploadService;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserController(UserService userService, UploadService uploadService) {
+    public UserController(UserService userService, UploadService uploadService,
+            PasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.uploadService = uploadService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @RequestMapping("/")
@@ -43,7 +47,13 @@ public class UserController {
     public String postCreateUser(Model model, @ModelAttribute("newUser") User newUser,
             @RequestParam("nameAvatarFile") MultipartFile file) {
         String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
-        // userService.handleSaveUser(newUser);
+        String hashPassword = this.passwordEncoder.encode(newUser.getPassword());
+        newUser.setAvatar(avatar);
+        newUser.setPassword(hashPassword);
+
+        newUser.setRole(this.userService.getRoleByName(newUser.getRole().getName()));
+
+        userService.handleSaveUser(newUser);
         return "redirect:/admin/user";
     }
 
@@ -68,6 +78,10 @@ public class UserController {
 
     @PostMapping("/admin/user/update")
     public String postUpdateUser(Model model, @ModelAttribute("updateUser") User updateUser) {
+        updateUser.setAvatar(updateUser.getAvatar());
+        updateUser.setPassword(updateUser.getPassword());
+        updateUser.setRole(this.userService.getRoleByName(updateUser.getRole().getName()));
+
         userService.handleSaveUser(updateUser);
         return "redirect:/admin/user";
     }
