@@ -9,7 +9,7 @@
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
             <meta name="description" content="PhamTho - Dự án laptopshop" />
             <meta name="author" content="PhamTho" />
-            <title>Detail User</title>
+            <title>Detail Product</title>
             <link href="/css/styles.css" rel="stylesheet" />
             <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         </head>
@@ -21,10 +21,10 @@
                 <div id="layoutSidenav_content">
                     <main>
                         <div class="container-fluid px-4">
-                            <h1 class="mt-4">Manage User</h1>
+                            <h1 class="mt-4">Manage Product</h1>
                             <ol class="breadcrumb mb-4">
                                 <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                                <li class="breadcrumb-item"><a href="/admin/user">User</a></li>
+                                <li class="breadcrumb-item"><a href="/admin/product">Product</a></li>
                                 <li class="breadcrumb-item active">Detail</li>
                             </ol>
                             <div>
@@ -32,20 +32,24 @@
                                     <div class="row">
                                         <div class="col-12 mx-auto">
                                             <div class="d-flex justify-content-between">
-                                                <h3>User detail with id = ${id}</h3>
+                                                <h3>Product detail with id = ${id}</h3>
                                             </div>
+
                                             <div class="card" style="width: 60%">
+                                                <img class="card-img-top" src="/images/product/${product.image}"
+                                                    alt="Card image top">
+
+
                                                 <div class="card-header">
-                                                    User information
+                                                    Product information
                                                 </div>
                                                 <ul class="list-group list-group-flush">
                                                     <li class="list-group-item">ID: ${id}</li>
-                                                    <li class="list-group-item">Email: ${user.email}</li>
-                                                    <li class="list-group-item">FullName: ${user.fullName}</li>
-                                                    <li class="list-group-item">Address: ${user.address}</li>
+                                                    <li class="list-group-item">Name: ${product.name}</li>
+                                                    <li class="list-group-item">Price: ${product.price}</li>
                                                 </ul>
                                             </div>
-                                            <a href="/admin/user" class="btn btn-success mt-3">Back</a>
+                                            <a href="/admin/product" class="btn btn-success mt-3">Back</a>
                                         </div>
                                     </div>
                                 </div>

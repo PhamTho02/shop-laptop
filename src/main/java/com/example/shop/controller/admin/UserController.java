@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 
 import com.example.shop.domain.User;
 import com.example.shop.service.UploadService;
@@ -47,14 +46,11 @@ public class UserController {
             @RequestParam("nameAvatarFile") MultipartFile file) {
 
         // validate
-        List<FieldError> errors = newUserBindingResult.getFieldErrors();
-        for (FieldError error : errors) {
-            System.out.println(">>>>" + error.getField() + " - " + error.getDefaultMessage());
-        }
+
         if (newUserBindingResult.hasErrors()) {
             return "admin/user/create";
         }
-        String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
+        String avatar = this.uploadService.handleSaveUploadFile(file, "admin/images/avatar");
         String hashPassword = this.passwordEncoder.encode(newUser.getPassword());
         newUser.setAvatar(avatar);
         newUser.setPassword(hashPassword);
@@ -85,7 +81,11 @@ public class UserController {
     }
 
     @PostMapping("/admin/user/update")
-    public String postUpdateUser(Model model, @ModelAttribute("updateUser") User updateUser) {
+    public String postUpdateUser(Model model, @ModelAttribute("updateUser") @Valid User updateUser,
+            BindingResult updateUserBindingResult) {
+        if (updateUserBindingResult.hasErrors()) {
+            return "admin/user/update";
+        }
         updateUser.setAvatar(updateUser.getAvatar());
         updateUser.setPassword(updateUser.getPassword());
         updateUser.setRole(this.userService.getRoleByName(updateUser.getRole().getName()));

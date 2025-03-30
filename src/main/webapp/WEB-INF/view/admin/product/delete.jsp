@@ -10,7 +10,7 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
                 <meta name="description" content="PhamTho - Dự án laptopshop" />
                 <meta name="author" content="PhamTho" />
-                <title>Delete User</title>
+                <title>Delete Product</title>
                 <link href="/css/styles.css" rel="stylesheet" />
                 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
             </head>
@@ -22,10 +22,10 @@
                     <div id="layoutSidenav_content">
                         <main>
                             <div class="container-fluid px-4">
-                                <h1 class="mt-4">Manage User</h1>
+                                <h1 class="mt-4">Manage Product</h1>
                                 <ol class="breadcrumb mb-4">
                                     <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                                    <li class="breadcrumb-item"><a href="/admin/user">User</a></li>
+                                    <li class="breadcrumb-item"><a href="/admin/product">Product</a></li>
                                     <li class="breadcrumb-item active">Delete</li>
                                 </ol>
                                 <div>
@@ -33,21 +33,21 @@
                                         <div class="row">
                                             <div class="col-12 mx-auto">
                                                 <div class="d-flex justify-content-between">
-                                                    <h3>Delete the user with id = ${id}</h3>
+                                                    <h3>Delete the product with id = ${id}</h3>
                                                 </div>
                                                 <hr />
                                                 <div class="alert alert-danger">
                                                     Are you sure to delete this user?
                                                 </div>
-                                                <form:form method="post" action="/admin/user/delete"
-                                                    modelAttribute="deleteUser">
+                                                <form:form method="post" action="/admin/product/delete"
+                                                    modelAttribute="deleteProduct">
                                                     <div class="mb-3" style="display: none;">
                                                         <label class="form-label">Id:</label>
                                                         <form:input type="text" class="form-control" path="id" />
                                                     </div>
                                                     <td>
                                                         <button class="btn btn-danger">Confirm</button>
-                                                        <a href="/admin/user" class="btn btn-success">Cancel</a>
+                                                        <a href="/admin/product" class="btn btn-success">Cancel</a>
                                                     </td>
                                                 </form:form>
 

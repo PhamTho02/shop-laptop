@@ -10,7 +10,7 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
                 <meta name="description" content="PhamTho - Dự án laptopshop" />
                 <meta name="author" content="PhamTho" />
-                <title>Update</title>
+                <title>Update User</title>
                 <link href="/css/styles.css" rel="stylesheet" />
                 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
             </head>
@@ -25,7 +25,8 @@
                                 <h1 class="mt-4">Manage User</h1>
                                 <ol class="breadcrumb mb-4">
                                     <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                                    <li class="breadcrumb-item active">User</li>
+                                    <li class="breadcrumb-item"><a href="/admin/user">User</a></li>
+                                    <li class="breadcrumb-item active">Update</li>
                                 </ol>
                                 <div>
                                     <div class="mt-5">
@@ -36,6 +37,11 @@
                                                 <form:form method="post" action="/admin/user/update"
                                                     modelAttribute="updateUser" class="row"
                                                     enctype="multipart/form-data">
+
+                                                    <c:set var="errorFullName">
+                                                        <form:errors path="fullName" cssClass="invalid-feedback" />
+                                                    </c:set>
+
                                                     <div class="mb-3" style="display: none;">
                                                         <label class="form-label">Id:</label>
                                                         <form:input type="text" class="form-control" path="id" />
@@ -54,8 +60,12 @@
                                                         <form:input type="text" class="form-control" path="phone" />
                                                     </div>
                                                     <div class="mb-3 col-12 col-md-6">
+
                                                         <label class="form-label">Full Name:</label>
-                                                        <form:input type="text" class="form-control" path="fullName" />
+                                                        <form:input type="text"
+                                                            class="form-control ${not empty errorFullName ? ' is-invalid' : ''}"
+                                                            path="fullName" />
+                                                        ${errorFullName}
                                                     </div>
                                                     <div class="mb-3 col-12 col-md-6">
                                                         <label class="form-label">Address:</label>
