@@ -72,10 +72,10 @@
                 <jsp:include page="../layout/banner.jsp" />
 
 
-                <jsp:include page="../layout/feature.jsp" />
 
 
-                <!-- Fruits Shop Start-->
+
+                <!-- Shop Start-->
                 <div class="container-fluid fruite py-5">
                     <div class="container py-5">
                         <div class="tab-class text-center">
@@ -143,8 +143,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- Fruits Shop End-->
-
+                <!-- Shop End-->
+                <jsp:include page="../layout/feature.jsp" />
 
                 <jsp:include page="../layout/footer.jsp" />
 
