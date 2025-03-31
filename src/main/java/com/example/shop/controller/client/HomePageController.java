@@ -55,14 +55,16 @@ public class HomePageController {
         // System.out.println(">>>>" + error.getField() + " " +
         // error.getDefaultMessage());
         // }
-
+        if (bindingResult.hasErrors()) {
+            return "client/auth/register";
+        }
         User user = this.userService.registerDTOtoUser(registerDOT);
         String hashPassword = this.passwordEncoder.encode(user.getPassword());
         user.setPassword(hashPassword);
 
         user.setRole(this.userService.getRoleByName("USER"));
 
-        // userService.handleSaveUser(user);
+        userService.handleSaveUser(user);
         return "redirect:/login";
     }
 

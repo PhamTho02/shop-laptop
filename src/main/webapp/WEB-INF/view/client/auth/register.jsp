@@ -29,6 +29,13 @@
                                             <div class="card-body">
                                                 <form:form method="post" action="/register"
                                                     modelAttribute="registerUser">
+                                                    <c:set var="errorConfirmPassword">
+                                                        <form:errors path="confirmPassword"
+                                                            cssClass="invalid-feedback" />
+                                                    </c:set>
+                                                    <c:set var="errorEmail">
+                                                        <form:errors path="email" cssClass="invalid-feedback" />
+                                                    </c:set>
                                                     <div class="row mb-3">
                                                         <div class="col-md-6">
                                                             <div class="form-floating mb-3 mb-md-0">
@@ -48,24 +55,30 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-floating mb-3">
-                                                        <form:input class="form-control" type="email"
-                                                            placeholder="name@example.com" path="email" />
-                                                        <label for="inputEmail">Email address</label>
+                                                        <form:input
+                                                            class="form-control ${not empty errorEmail ? 'is-invalid' : ''}"
+                                                            type="email" placeholder="name@example.com" path="email" />
+                                                        <label>Email address</label>
+                                                        ${errorEmail}
                                                     </div>
                                                     <div class="row mb-3">
                                                         <div class="col-md-6">
                                                             <div class="form-floating mb-3 mb-md-0">
-                                                                <form:input class="form-control" type="password"
+                                                                <form:input type="password" class="form-control"
                                                                     placeholder="Create a password" path="password" />
                                                                 <label>Password</label>
+
                                                             </div>
                                                         </div>
+
                                                         <div class="col-md-6">
                                                             <div class="form-floating mb-3 mb-md-0">
-                                                                <form:input class="form-control" type="password"
-                                                                    placeholder="Confirm password"
+                                                                <form:input
+                                                                    class="form-control ${not empty errorConfirmPassword ? 'is-invalid' : ''}"
+                                                                    type="password" placeholder="Confirm password"
                                                                     path="confirmPassword" />
                                                                 <label>Confirm Password</label>
+                                                                ${errorConfirmPassword}
                                                             </div>
                                                         </div>
                                                     </div>
