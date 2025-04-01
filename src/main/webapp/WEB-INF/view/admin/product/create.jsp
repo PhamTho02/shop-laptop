@@ -47,7 +47,7 @@
                                             <div class="col-md-6 col-12 mx-auto">
                                                 <h3>Creates a product</h3>
                                                 <hr />
-                                                <form:form method="post" action="/admin/product/create"
+                                                <form:form method="post" action="admin/product/create"
                                                     modelAttribute="newProduct" class="row"
                                                     enctype="multipart/form-data">
                                                     <c:set var="errorName">

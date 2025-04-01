@@ -55,7 +55,7 @@
                                             <div class="col-md-6 col-12 mx-auto">
                                                 <h3>Update a product</h3>
                                                 <hr />
-                                                <form:form method="post" action="/admin/product/update"
+                                                <form:form method="post" action="admin/product/update"
                                                     modelAttribute="updateProduct" class="row"
                                                     enctype="multipart/form-data">
                                                     <c:set var="errorName">

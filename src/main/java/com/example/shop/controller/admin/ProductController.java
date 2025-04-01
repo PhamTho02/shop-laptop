@@ -57,13 +57,13 @@ public class ProductController {
         newProduct.setImage(image);
 
         productService.handleSaveProduct(newProduct);
-        return "redirect:/admin/product";
+        return "redirect:admin/product";
     }
 
     @GetMapping("admin/product/{id}")
     public String getProductDetailPage(Model model, @PathVariable long id) {
         model.addAttribute("product", productService.fetchProductById(id).get());
-        return "/admin/product/detail";
+        return "admin/product/detail";
     }
 
     @GetMapping("admin/product/delete/{id}")
@@ -76,7 +76,7 @@ public class ProductController {
     public String postDeleteProduct(Model model, @ModelAttribute("deleteProduct") Product deleteProduct) {
         // TODO: process POST request
         productService.handleDeleteProduct(deleteProduct.getId());
-        return "redirect:/admin/product";
+        return "redirect:admin/product";
     }
 
     @GetMapping("/admin/product/update/{id}")
@@ -100,7 +100,7 @@ public class ProductController {
         }
         // TODO: process POST request
         productService.handleSaveProduct(updateProduct);
-        return "redirect:/admin/product";
+        return "redirect:admin/product";
     }
 
 }

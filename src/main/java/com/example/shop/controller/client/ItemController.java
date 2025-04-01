@@ -20,6 +20,6 @@ public class ItemController {
     public String getProductPage(Model model, @PathVariable long id) {
         // Logic to fetch product details using the id and add to the model
         model.addAttribute("product", productService.fetchProductById(id).get());
-        return "/client/product/detail";
+        return "client/product/detail";
     }
 }

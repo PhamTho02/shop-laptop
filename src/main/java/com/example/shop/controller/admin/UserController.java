@@ -58,26 +58,26 @@ public class UserController {
         newUser.setRole(this.userService.getRoleByName(newUser.getRole().getName()));
 
         userService.handleSaveUser(newUser);
-        return "redirect:/admin/user";
+        return "redirect:admin/user";
     }
 
     @GetMapping("/admin/user")
     public String getUserPage(Model model) {
         List<User> users = userService.getAllUsers();
         model.addAttribute("users", users);
-        return "/admin/user/show";
+        return "admin/user/show";
     }
 
     @GetMapping("/admin/user/{id}")
     public String getUserDetailPage(Model model, @PathVariable long id) {
         model.addAttribute("user", userService.getUserById(id));
-        return "/admin/user/detail";
+        return "admin/user/detail";
     }
 
     @GetMapping("/admin/user/update/{id}")
     public String getUpdateUserPage(Model model, @PathVariable long id) {
         model.addAttribute("updateUser", userService.getUserById(id));
-        return "/admin/user/update";
+        return "admin/user/update";
     }
 
     @PostMapping("/admin/user/update")
@@ -91,7 +91,7 @@ public class UserController {
         updateUser.setRole(this.userService.getRoleByName(updateUser.getRole().getName()));
 
         userService.handleSaveUser(updateUser);
-        return "redirect:/admin/user";
+        return "redirect:admin/user";
     }
 
     @GetMapping("/admin/user/delete/{id}")
@@ -103,7 +103,7 @@ public class UserController {
     @PostMapping("/admin/user/delete")
     public String postDeleteUser(Model model, @ModelAttribute("deleteUser") User deleteUser) {
         this.userService.handleDeleteUser(deleteUser.getId());
-        return "redirect:/admin/user";
+        return "redirect:admin/user";
     }
 
 }
