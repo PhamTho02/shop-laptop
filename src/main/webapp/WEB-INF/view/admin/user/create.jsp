@@ -47,7 +47,7 @@
                                             <div class="col-md-6 col-12 mx-auto">
                                                 <h3>Creates a user</h3>
                                                 <hr />
-                                                <form:form method="post" action="admin/user/create"
+                                                <form:form method="post" action="/admin/user/create"
                                                     modelAttribute="newUser" class="row" enctype="multipart/form-data">
                                                     <c:set var="errorEmail">
                                                         <form:errors path="email" cssClass="invalid-feedback" />

@@ -58,7 +58,7 @@ public class UserController {
         newUser.setRole(this.userService.getRoleByName(newUser.getRole().getName()));
 
         userService.handleSaveUser(newUser);
-        return "redirect:admin/user";
+        return "redirect:/admin/user";
     }
 
     @GetMapping("/admin/user")
@@ -91,7 +91,7 @@ public class UserController {
         updateUser.setRole(this.userService.getRoleByName(updateUser.getRole().getName()));
 
         userService.handleSaveUser(updateUser);
-        return "redirect:admin/user";
+        return "redirect:/admin/user";
     }
 
     @GetMapping("/admin/user/delete/{id}")
@@ -103,7 +103,7 @@ public class UserController {
     @PostMapping("/admin/user/delete")
     public String postDeleteUser(Model model, @ModelAttribute("deleteUser") User deleteUser) {
         this.userService.handleDeleteUser(deleteUser.getId());
-        return "redirect:admin/user";
+        return "redirect:/admin/user";
     }
 
 }

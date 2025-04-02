@@ -65,11 +65,12 @@ public class HomePageController {
         user.setRole(this.userService.getRoleByName("USER"));
 
         userService.handleSaveUser(user);
-        return "redirect:login";
+        return "redirect:/login";
     }
 
     @GetMapping("/login")
     public String getLoginPage(Model model) {
         return "client/auth/login";
     }
+
 }

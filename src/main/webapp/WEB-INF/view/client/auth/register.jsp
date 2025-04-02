@@ -27,7 +27,7 @@
                                                 <h3 class="text-center font-weight-light my-4">Create Account</h3>
                                             </div>
                                             <div class="card-body">
-                                                <form:form method="post" action="register"
+                                                <form:form method="post" action="/register"
                                                     modelAttribute="registerUser">
                                                     <c:set var="errorConfirmPassword">
                                                         <form:errors path="confirmPassword"
