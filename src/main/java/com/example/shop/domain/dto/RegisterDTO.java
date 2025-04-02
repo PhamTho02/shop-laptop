@@ -5,6 +5,7 @@ import com.example.shop.service.validator.RegisterChecked;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @RegisterChecked
 public class RegisterDTO {
@@ -22,7 +23,7 @@ public class RegisterDTO {
     private String email;
 
     @NotNull
-    @NotEmpty(message = "Password phải có tối thiểu 6 ký tự")
+    @Size(min = 8, message = "Password phải có tối thiểu 8 ký tự")
     private String password;
     private String confirmPassword;
 

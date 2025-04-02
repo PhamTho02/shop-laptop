@@ -43,7 +43,7 @@ public class UserService {
     public User registerDTOtoUser(RegisterDTO registerDOT) {
         User user = new User();
 
-        user.setFullName(registerDOT.getFirstName() + "" + registerDOT.getLastName());
+        user.setFullName(registerDOT.getFirstName() + " " + registerDOT.getLastName());
         user.setEmail(registerDOT.getEmail());
         user.setPassword(registerDOT.getPassword());
 
