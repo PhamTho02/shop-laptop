@@ -13,6 +13,8 @@ import com.example.shop.repository.CartDetailRepository;
 import com.example.shop.repository.CartRepository;
 import com.example.shop.repository.ProductRepository;
 
+import jakarta.servlet.http.HttpSession;
+
 @Service
 public class ProductService {
     private final ProductRepository productRepository;
@@ -44,7 +46,7 @@ public class ProductService {
         this.productRepository.deleteById(id);
     }
 
-    public void handleAddProductToCart(String email, long productID) {
+    public void handleAddProductToCart(String email, long productID, HttpSession session) {
 
         User user = this.userService.getUserByEmail(email);
         if (user != null) {
@@ -55,7 +57,7 @@ public class ProductService {
                 // create cart
                 Cart newCart = new Cart();
                 newCart.setUser(user);
-                newCart.setSum(1);
+                newCart.setSum(0);
 
                 cart = this.cartRepository.save(newCart);
             }
@@ -77,6 +79,12 @@ public class ProductService {
                     cartDetail.setQuantity(1);
 
                     this.cartDetailRepository.save(cartDetail);
+
+                    // update cart (sum)
+                    int sum = cart.getSum() + 1;
+                    cart.setSum(sum);
+                    this.cartRepository.save(cart);
+                    session.setAttribute("sum", sum);
                 } else {
                     oldDetail.setQuantity(oldDetail.getQuantity() + 1);
                     this.cartDetailRepository.save(oldDetail);

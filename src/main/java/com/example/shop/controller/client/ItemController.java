@@ -34,7 +34,7 @@ public class ItemController {
         // TODO: process POST request
 
         String email = (String) session.getAttribute("email");
-        this.productService.handleAddProductToCart(email, id);
+        this.productService.handleAddProductToCart(email, id, session);
         return "redirect:/";
     }
 
