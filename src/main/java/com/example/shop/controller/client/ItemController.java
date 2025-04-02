@@ -38,4 +38,9 @@ public class ItemController {
         return "redirect:/";
     }
 
+    @GetMapping("/cart")
+    public String getCartPage(Model model) {
+        // Logic to fetch product details using the id and add to the model
+        return "client/cart/show";
+    }
 }
