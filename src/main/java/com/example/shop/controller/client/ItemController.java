@@ -7,6 +7,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.shop.service.ProductService;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+
+import org.springframework.web.bind.annotation.PostMapping;
+
 @Controller
 public class ItemController {
 
@@ -22,4 +27,15 @@ public class ItemController {
         model.addAttribute("product", productService.fetchProductById(id).get());
         return "client/product/detail";
     }
+
+    @PostMapping("/add-product-to-cart/{id}")
+    public String addProductToCart(Model model, @PathVariable long id, HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        // TODO: process POST request
+
+        String email = (String) session.getAttribute("email");
+        this.productService.handleAddProductToCart(email, id);
+        return "redirect:/";
+    }
+
 }
