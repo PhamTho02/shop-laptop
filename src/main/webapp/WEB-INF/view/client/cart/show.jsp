@@ -94,7 +94,7 @@
                                             </td>
                                             <td>
                                                 <p class="mb-0 mt-4">
-                                                    <fmt:formatNumber type="number" value="${cartDetail.price}" />đ
+                                                    <fmt:formatNumber type="number" value="${cartDetail.price}" /> đ
                                                 </p>
                                             </td>
                                             <td>
@@ -121,13 +121,17 @@
                                             <td>
                                                 <p class="mb-0 mt-4" data-cart-detail-id="${cartDetail.id}">
                                                     <fmt:formatNumber type="number"
-                                                        value="${cartDetail.price*cartDetail.quantity}" />đ
+                                                        value="${cartDetail.price*cartDetail.quantity}" /> đ
                                                 </p>
                                             </td>
                                             <td>
-                                                <button class="btn btn-md rounded-circle bg-light border mt-4">
-                                                    <i class="fa fa-times text-danger"></i>
-                                                </button>
+                                                <form method="post" action="/delete-cart-product/${cartDetail.id}">
+                                                    <input type="hidden" name="${_csrf.parameterName}"
+                                                        value="${_csrf.token}" />
+                                                    <button class="btn btn-md rounded-circle bg-light border mt-4">
+                                                        <i class="fa fa-times text-danger"></i>
+                                                    </button>
+                                                </form>
                                             </td>
 
                                         </tr>
@@ -145,7 +149,7 @@
                                         <div class="d-flex justify-content-between mb-4">
                                             <h5 class="mb-0 me-4">Tạm tính:</h5>
                                             <p class="mb-0" data-cart-total-price="${totalPrice}">
-                                                <fmt:formatNumber type="number" value="${totalPrice}" />đ
+                                                <fmt:formatNumber type="number" value="${totalPrice}" /> đ
                                             </p>
                                         </div>
                                         <div class="d-flex justify-content-between">
@@ -158,7 +162,7 @@
                                     <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
                                         <h5 class="mb-0 ps-4 me-4">Tổng số tiền</h5>
                                         <p class="mb-0 pe-4" data-cart-total-price="${totalPrice}">
-                                            <fmt:formatNumber type="number" value="${totalPrice}" />đ
+                                            <fmt:formatNumber type="number" value="${totalPrice}" /> đ
                                         </p>
                                     </div>
                                     <button
