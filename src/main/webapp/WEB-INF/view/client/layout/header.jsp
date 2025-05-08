@@ -15,7 +15,7 @@
                         </button>
                         <div class="collapse navbar-collapse bg-white justify-content-between mx-5" id="navbarCollapse">
                             <div class="navbar-nav">
-                                <a href="/" class="nav-item nav-link active">Trang chủ</a>
+                                <a href="/" class="nav-item nav-link">Trang chủ</a>
                                 <a href="/products" class="nav-item nav-link">Sản phẩm</a>
 
                             </div>
