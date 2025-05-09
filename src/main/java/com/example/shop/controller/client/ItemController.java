@@ -15,13 +15,13 @@ import com.example.shop.domain.Cart;
 import com.example.shop.domain.CartDetail;
 import com.example.shop.domain.Product;
 import com.example.shop.domain.User;
+import com.example.shop.domain.dto.ProductCriteriaDTO;
 import com.example.shop.service.ProductService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ItemController {
@@ -80,8 +80,17 @@ public class ItemController {
     }
 
     @GetMapping("/products")
-    public String getUserPage(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
-        Pageable pageable = PageRequest.of(page - 1, 6);
+    public String getUserPage(Model model, ProductCriteriaDTO productCriteriaDTO) {
+        // page
+        int page = 1;
+        try {
+            if (productCriteriaDTO.getPage().isPresent()) {
+                page = Integer.parseInt(productCriteriaDTO.getSort().get());
+            }
+        } catch (Exception e) {
+
+        }
+        Pageable pageable = PageRequest.of(page - 1, 60);
         Page<Product> productPage = productService.fetchProducts(pageable);
         List<Product> productList = productPage.getContent();
 

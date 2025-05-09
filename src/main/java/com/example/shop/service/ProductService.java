@@ -14,6 +14,7 @@ import com.example.shop.domain.User;
 import com.example.shop.repository.CartDetailRepository;
 import com.example.shop.repository.CartRepository;
 import com.example.shop.repository.ProductRepository;
+import com.example.shop.service.specification.ProductSpecs;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -34,14 +35,6 @@ public class ProductService {
 
     public Product handleSaveProduct(Product product) {
         return this.productRepository.save(product);
-    }
-
-    public List<Product> fetchProducts() {
-        return this.productRepository.findAll();
-    }
-
-    public Page<Product> fetchProducts(Pageable pageable) {
-        return this.productRepository.findAll(pageable);
     }
 
     public Optional<Product> fetchProductById(long id) {
@@ -123,5 +116,17 @@ public class ProductService {
                 session.setAttribute("sum", 0);
             }
         }
+    }
+
+    public List<Product> fetchProducts() {
+        return this.productRepository.findAll();
+    }
+
+    public Page<Product> fetchProducts(Pageable pageable) {
+        return this.productRepository.findAll(pageable);
+    }
+
+    public Page<Product> fetchProducts(Pageable pageable, String name) {
+        return this.productRepository.findAll(ProductSpecs.nameLike(name), pageable);
     }
 }
