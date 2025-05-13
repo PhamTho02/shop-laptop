@@ -1,0 +1,42 @@
+services:
+  db-postgres:
+    image: postgres:17.4
+    restart: always
+    container_name: db-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: shop-laptop
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db-postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db-postgres:5432/shop-laptop
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 123456
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_SHOW_SQL: true
+
+volumes:
+  pgdata:
+    #docker compose --project-name shop-laptop up -d
+
+
+# import sql file
+
+# docker cp ./shop.sql db-postgres:/init.sql
+# docker exec -i db-postgres pg_restore -U postgres -d shop-laptop /init.sql
+
+# join to db-postgres
+# docker exec -it db-postgres psql -U postgres -d shop-laptop
